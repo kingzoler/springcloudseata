@@ -1,22 +1,20 @@
 spring:
-  application:
+   application:
       name: client-feign
-
 server:
-  port: 80
-
+   port: 80
 eureka:
-  client:
-    serviceUrl:
-          defaultZone: http://localhost:8000/eureka/
-
-feign: 
-  httpclient:
-    enable: false
-  okhttp:
-    enable: true
-
+   client:
+      serviceUrl:
+         defaultZone: http://localhost:8000/eureka/
+   instance:
+feign:
+   httpclient:
+      enable: false
+   okhttp:
+      enable: true
 ribbon:
+#更改负载策略，本地优先
    eureka:
       enable: true
    eager-load:
@@ -24,8 +22,6 @@ ribbon:
       clients: service-provider,service-provider2
    ConnectTimeout: 5000
    ReadTimeout: 5000
-
-#更改负载策略，本地优先
 service-provider:
    ribbon:
       NFLoadBalancerRuleClassName: test.consumer.MyLocalPriorityRule
@@ -33,7 +29,6 @@ service-provider2:
    ribbon:
       NFLoadBalancerRuleClassName: test.consumer.MyLocalPriorityRule
 serverIP: 192.168.2.126
-    
 hystrix:
    command:
       default:
